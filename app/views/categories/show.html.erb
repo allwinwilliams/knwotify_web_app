@@ -1,0 +1,23 @@
+<div>
+  <%= render "components/navbar" %>
+</div>
+<h1>Topic: <%= @category.name %></h1>
+<% if current_user.is_subscribed(@category) %>
+
+  <%= form_for @category, method: :post, url: unsubscribe_user_category_path  do |form| %>
+    <%= form.text_field :name, value: @category.name, type: "hidden" %>
+    <%= form.submit "remove" %>
+  <% end %>
+<% else %>
+  <%= form_for @category, method: :post, url: subscribe_user_category_path  do |form| %>
+    <%= form.text_field :name, value: @category.name, type: "hidden" %>
+    <%= form.submit "add" %>
+  <% end %>
+<% end %>
+<% @posts.each do |post| %>
+
+    <h4>TITLE</h4><p><%= post.n.properties[:title]  %></p>
+    <h4>ID</h4><p><%= post.n.id  %></p>
+    <h4>Show</h4><p><%= link_to 'Show', post_path(post.n.id) %></p>
+
+<% end %>

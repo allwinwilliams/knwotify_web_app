@@ -1,0 +1,16 @@
+<div>
+  <%= render "components/navbar" %>
+</div>
+<h2>posts index</h2>
+
+<%= form_tag(posts_path, :method => "get")  do %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "search", :name => nil%>
+<% end %>
+<% @posts.each do |post| %>
+
+    <h4>TITLE</h4><p><%= post.n.properties[:title]  %></p>
+    <h4>ID</h4><p><%= post.n.id  %></p>
+    <h4>Show</h4><p><%= link_to 'Show', post_path(post.n.id) %></p>
+
+<% end %>

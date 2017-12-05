@@ -1,0 +1,19 @@
+<div>
+  <%= render "components/navbar" %>
+</div>
+<h1>user categories</h1>
+<h4>add user categories</h4>
+
+<%= form_for @category, url: subscribe_user_category_path  do |form| %>
+    <%= form.text_field :name%>
+    <%= form.submit "add" %>
+<% end %>
+
+<h4>CATEGORies</h4>
+<% @user_categories.each do |category| %>
+    <%= link_to category.name, category_path(category.name) %></p>
+    <%= form_for @category, url: unsubscribe_user_category_path  do |form| %>
+        <%= form.text_field :name, value: category.name, type: "hidden" %>
+        <%= form.submit "remove" %>
+    <% end %>
+<% end %>

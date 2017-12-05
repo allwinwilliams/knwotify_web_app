@@ -1,0 +1,15 @@
+<div>
+  <%= render "components/navbar" %>
+</div>
+<h2>topics index</h2>
+
+
+<% @categories.each do |category| %>
+    <h4>NAME</h4><p><%= category.name %></p>
+    <h4>Show</h4><p><%= link_to 'Show', category_path(category.name) %></p>
+    <% if current_user.is_subscribed(category) %>
+      <h4>subscribed</h4>
+    <% else %>
+      <h4>not subscribed</h4>
+    <% end %>
+<% end %>
