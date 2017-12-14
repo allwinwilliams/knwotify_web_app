@@ -1,6 +1,5 @@
-<div>
-  <%= render "components/navbar" %>
-</div>
+<%= render "components/navbar" %>
+<div class="container">
 <h1>Topic: <%= @category.name %></h1>
 <% if current_user.is_subscribed(@category) %>
 
@@ -21,3 +20,4 @@
     <h4>Show</h4><p><%= link_to 'Show', post_path(post.n.id) %></p>
 
 <% end %>
+</div>

@@ -1,8 +1,8 @@
-<div>
-  <%= render "components/navbar" %>
-</div>
+<%= render "components/navbar" %>
+<div class="container">
 <h2>posts show</h2>
 <h4>ID</h4><p><%= @post.n.id  %></p>
 <h4>TITLE</h4><p><%= @post.n.properties[:title]  %></p>
 <h4>TITLE</h4><p><%= @post.n.properties[:url]  %></p>
 <h4>CONTENT</h4><p><%= @post.n.properties[:content]  %></p>
+</div>
