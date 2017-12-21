@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>KnowtifyWebApp</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "https://use.fontawesome.com/releases/v5.0.1/js/all.js", 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+      <%= yield %>
+
+    <footer class="footer border">
+      <div class="container">
+        <span class="text-muted">&copy Knowtify Team</span>
+      </div>
+    </footer>
   </body>
+
 </html>

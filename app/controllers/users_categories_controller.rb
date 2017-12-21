@@ -27,14 +27,14 @@ class UsersCategoriesController < UsersController
   def subscribe_category
     category=Category.find_by_name(user_category_params[:name]) || Category.create(name: user_category_params[:name])
     user_category =UserCategory.create(category_id: category.id, user_id: current_user.id)
-    redirect_to users_categories_path
+    redirect_back(fallback_location: root_path)
   end
 
   def unsubscribe_category
     category = Category.find_by_name(user_category_params[:name])
     user_category =UserCategory.where(category_id: category.id, user_id: current_user.id)
     UserCategory.destroy(user_category.ids)
-    redirect_to users_categories_path
+    redirect_back(fallback_location: root_path)
   end
 
   private

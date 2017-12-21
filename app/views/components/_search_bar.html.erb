@@ -1,0 +1,12 @@
+<div class="bg-light border">
+  <div class="container pt-4 pb-3">
+    <%= form_tag(posts_path, :method => "get", class:'form-group')  do %>
+      <div class="input-group">
+        <%= text_field_tag :q, params[:q], class:'form-control', placeholder: "Search Posts, Categories, Topics..." %>
+        <span class="input-group-btn">
+          <%= submit_tag "Search", :name => nil, class:"btn btn-primary"%>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

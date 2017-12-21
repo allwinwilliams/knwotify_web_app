@@ -1,5 +1,49 @@
 <%= render "components/navbar" %>
-<div class="container text-center">
-  <h1>Knowtify</h1>
-  <p>Get instant info on topics you like</p>
-<div>
+<div class="jumbotron bg-primary text-white py-5 mb-0  rounded-0">
+  <div class="container py-5">
+    <h2 class="display-3">Search.</h1>
+    <h2 class="display-3">Subcribe.</h1>
+    <h2 class="display-3">Notified.</h1>
+    <h3 class="lead py-3">
+      Get information of topics your are interested in anywhere from the internet instantly with the help of Knowtify.<br />
+      Knowtify acts as a medium between users and all blogging and news site, providing users a way to get notifications of news or blogs on topics they are interested in.
+    </h3>
+    <p class="lead pt-5">
+      Sign up to get updates from web on the go...
+    </p>
+      <div class="row py-3">
+        <div class="col-md-4">
+          <%= link_to 'Sign Up', new_user_registration_path, :class => 'w-75 btn btn-success btn-lg text-white' %>
+        </div>
+        <div class="col-md-4">
+          <%= link_to 'Sign In', new_user_session_path, :class => 'w-75 btn btn-outline-light btn-lg text-white' %>
+        </div>
+      </div>
+  </div>
+</div>
+<div class="jumbotron bg-light text-dark py-5 mb-0">
+  <h1 class="text-center display-3">Why Knowtify?</h1>
+  <div class="container py-5 text-center">
+
+    <h2 class="display-4">Easy.</h1>
+      <h3 class="lead py-3">
+        Knowtift is easy to use and infact easier than conventions systems in more ways.
+      </h3>
+    <h2 class="display-4">Fast.</h1>
+      <h3 class="lead py-3">
+        The communcation between web articles and its people is done without any kind of delays.
+      </h3>
+    <h2 class="display-4">Flexible.</h1>
+    <h3 class="lead py-3">
+      Through various algorithms we provide means by which users gets information.
+    </h3>
+  </div>
+</div>
+<div class="jumbotron bg-dark text-white py-5 pb-5 text-center">
+  <h1 class=" text-center">
+    Sign up to get updates from your  on the go...
+  </h1>
+  <div class="text-center py-5">
+    <%= link_to 'Sign Up', new_user_registration_path, :class => 'btn btn-primary btn-lg w-50 text-white' %>
+  </div>
+</div>

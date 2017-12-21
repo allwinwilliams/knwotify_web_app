@@ -1,8 +1,11 @@
 <%= render "components/navbar" %>
-<div class="container">
-<h2>posts show</h2>
-<h4>ID</h4><p><%= @post.n.id  %></p>
-<h4>TITLE</h4><p><%= @post.n.properties[:title]  %></p>
-<h4>TITLE</h4><p><%= @post.n.properties[:url]  %></p>
-<h4>CONTENT</h4><p><%= @post.n.properties[:content]  %></p>
+<div class="container my-4 pb-5">
+  <h1 class="display-4 my-5"><%= @post.n.properties[:title]  %></h1>
+  <p class="text-secondary" >
+    Originally posted on:
+    <a href="<%= @post.n.properties[:url]%>" target="_blank">
+      <%= @post.n.properties[:url]  %>
+    </a>
+  <p>
+  <p class="lead modal-title py-4"><%= @post.n.properties[:content]  %></p>
 </div>

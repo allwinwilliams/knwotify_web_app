@@ -1,8 +1,8 @@
 <%= render "components/navbar" %>
+<%= render "components/search_bar" %>
 <div class="container">
 <h1>Topic: <%= @category.name %></h1>
 <% if current_user.is_subscribed(@category) %>
-
   <%= form_for @category, method: :post, url: unsubscribe_user_category_path  do |form| %>
     <%= form.text_field :name, value: @category.name, type: "hidden" %>
     <%= form.submit "remove" %>
@@ -15,9 +15,10 @@
 <% end %>
 <% @posts.each do |post| %>
 
-    <h4>TITLE</h4><p><%= post.n.properties[:title]  %></p>
-    <h4>ID</h4><p><%= post.n.id  %></p>
-    <h4>Show</h4><p><%= link_to 'Show', post_path(post.n.id) %></p>
-
+  <%= link_to post_path(post.n.id) do%>
+    <h3><%= post.n.properties[:title] %></h3>
+    <p class="list-group-item-text col-md-12 color-black"><%= truncate(post.n.properties[:content], :length => 250) %></p>
+  <% end %>
+  <hr />
 <% end %>
 </div>

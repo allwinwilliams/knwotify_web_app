@@ -1,19 +1,32 @@
 <%= render "components/navbar" %>
-<div class="container">
-<h1>user categories</h1>
-<h4>add user categories</h4>
+<%= render "components/search_bar" %>
+<div class="container py-5 w-50">
+  <h4> Categories</h4>
+  <%= form_for @category, url: subscribe_user_category_path, class:'form-group'  do |form| %>
+    <div class="input-group">
+      <%= form.text_field :name, class:'form-control', placeholder: "Add Category"%>
+      <span class="input-group-btn">
+        <%= form.submit "Add", class:'btn btn-lg btn-success' %>
+      </span>
+    </div>
+  <% end %>
 
-<%= form_for @category, url: subscribe_user_category_path  do |form| %>
-    <%= form.text_field :name%>
-    <%= form.submit "add" %>
-<% end %>
+  <h4 class="pt-5">Subcribed Categories</h4>
+  <div class="container">
+      <% @user_categories.each do |category| %>
+        <div class="row py-4 ">
+          <div class="col-md-6 ">
+            <h2 class=""><%= link_to category.name, category_path(category.name) %></h2>
 
-<h4>CATEGORies</h4>
-<% @user_categories.each do |category| %>
-    <%= link_to category.name, category_path(category.name) %></p>
-    <%= form_for @category, url: unsubscribe_user_category_path  do |form| %>
-        <%= form.text_field :name, value: category.name, type: "hidden" %>
-        <%= form.submit "remove" %>
-    <% end %>
-<% end %>
+          </div>
+          <div class="col-md-6 text-right">
+            <%= form_for @category, url: unsubscribe_user_category_path, class: "form-group d-inline"  do |form| %>
+                <%= form.text_field :name, value: category.name, type: "hidden" %>
+                <%= form.submit "remove", class: "btn btn-danger" %>
+            <% end %>
+          </div>
+        </div>
+        <hr />
+      <% end %>
+  </div>
 </div>

@@ -1,16 +1,16 @@
+
 <%= render "components/navbar" %>
-
-<div class="container">
-<h2>posts index</h2>
-<%= form_tag(posts_path, :method => "get")  do %>
-  <%= text_field_tag :q, params[:q] %>
-  <%= submit_tag "search", :name => nil%>
-<% end %>
-<% @posts.each do |post| %>
-
-    <h4>TITLE</h4><p><%= post.n.properties[:title]  %></p>
-    <h4>ID</h4><p><%= post.n.id  %></p>
-    <h4>Show</h4><p><%= link_to 'Show', post_path(post.n.id) %></p>
-
-<% end %>
+<%= render "components/search_bar" %>
+<div class="container py-3 ">
+  <div class="my-4">
+    <% @posts.each do |post| %>
+      <div class="my-5 mb-5">
+        <%= link_to post_path(post.n.id) do%>
+          <h2 class="text-dark"><%=  truncate(post.n.properties[:title], :length => 100)%></h2>
+          <p class="list-group-item-text text-secondary pb-3"><%= truncate(post.n.properties[:content], :length => 250) %></p>
+        <% end %>
+        <hr />
+      </div>
+    <% end %>
+  </d>
 </div>
