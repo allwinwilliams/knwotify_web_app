@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap'
 
+gem "font-awesome-rails"
+
 gem 'devise'
 
 gem 'neo4j-core'
@@ -40,6 +42,8 @@ gem 'neo4j'
 gem 'doorkeeper'
 
 gem 'active_model_serializers'
+
+gem 'will_paginate', '~> 3.1.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
