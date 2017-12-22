@@ -10,7 +10,11 @@ class UsersCategoriesController < UsersController
             MATCH (n:Article)-[:BELONG_TO]->(c:Category)
             WHERE ANY
               (x IN #{@user_categories.collect{|x| x.name}} WHERE x =~ c.name)
-            RETURN n").to_a
+            RETURN n")
+            .to_a
+            .paginate(:page => params[:page], :per_page => 5)
+
+    @page = (params[:page] || 1).to_i
 
     @category=Category.new
   end

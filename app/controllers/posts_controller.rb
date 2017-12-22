@@ -9,10 +9,17 @@ class PostsController < UsersController
               c.name CONTAINS '#{params[:q]}'
               or n.content CONTAINS '#{params[:q]}'
               or n.title CONTAINS '#{params[:q]}'
-              RETURN DISTINCT (n)").to_a
+              RETURN DISTINCT (n)")
+              .to_a
+              .paginate(:page => params[:page], :per_page => 5)
     else
-      @posts= Neo4j::ActiveBase.current_session.query("MATCH (n:Article) RETURN n").to_a.paginate(:page => params[:page], :per_page => 5)
+      @posts= Neo4j::ActiveBase.current_session.
+              query("MATCH (n:Article) RETURN n")
+              .to_a
+              .paginate(:page => params[:page], :per_page => 5)
     end
+    
+    @page = (params[:page] || 1).to_i
   end
 
   def show
