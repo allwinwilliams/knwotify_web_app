@@ -1,9 +1,8 @@
 class PostsController < UsersController
 
   def index
-    puts "posts controller....."
     if params[:q] && params[:q]!=""
-      @posts= Neo4j::ActiveBase.current_session.query(
+      @all_posts=Neo4j::ActiveBase.current_session.query(
               "MATCH (n:Article)-[:BELONG_TO]->(c:Category)
               WHERE
               c.name CONTAINS '#{params[:q]}'
@@ -11,15 +10,22 @@ class PostsController < UsersController
               or n.title CONTAINS '#{params[:q]}'
               RETURN DISTINCT (n)")
               .to_a
+      @posts=@all_posts
               .paginate(:page => params[:page], :per_page => 5)
     else
-      @posts= Neo4j::ActiveBase.current_session.
+      @all_posts=Neo4j::ActiveBase.current_session.
               query("MATCH (n:Article) RETURN n")
               .to_a
+      @posts=@all_posts
               .paginate(:page => params[:page], :per_page => 5)
     end
-    
-    @page = (params[:page] || 1).to_i
+
+    if params[:page]
+      @page=params[:page].to_i
+    else
+      @page=1
+    end
+    @total_pages = ( @all_posts.length%5 == 0 ) ? @all_posts.length/5 : @all_posts.length/5+1
   end
 
   def show

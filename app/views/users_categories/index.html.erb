@@ -24,12 +24,12 @@
           </b>
         <%end%>
       </li>
-      <% for i in 1..3 do %>
+      <% for i in 1..@total_pages do %>
         <li class="page-item"><%= link_to "#{i}", users_posts_path(page: "#{i}"), class: "page-link" %></li>
       <%end%>
 
       <li class="page-item">
-        <%= link_to (@page) ? users_posts_path(page: "#{@page+1}") : "#", class: "page-link" do%>
+        <%= link_to (@page<@total_pages) ? users_posts_path(page: "#{@page+1}") : "#", class: "page-link" do%>
           <b aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
             <span class="sr-only">Next</span>

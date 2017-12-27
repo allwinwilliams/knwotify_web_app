@@ -5,18 +5,25 @@ class UsersCategoriesController < UsersController
                     .joins(:category)
                     .where('users_categories.user_id' => current_user.id)
 
-
-    @posts=Neo4j::ActiveBase.current_session.query("
+    @all_posts=Neo4j::ActiveBase.current_session.query("
             MATCH (n:Article)-[:BELONG_TO]->(c:Category)
             WHERE ANY
               (x IN #{@user_categories.collect{|x| x.name}} WHERE x =~ c.name)
             RETURN n")
             .to_a
+
+    @posts=@all_posts
             .paginate(:page => params[:page], :per_page => 5)
 
-    @page = (params[:page] || 1).to_i
+    if params[:page]
+      @page=params[:page].to_i
+    else
+      @page=1
+    end
+    @total_pages = ( @all_posts.length%5 == 0 ) ? @all_posts.length/5 : @all_posts.length/5+1
 
     @category=Category.new
+
   end
 
 
